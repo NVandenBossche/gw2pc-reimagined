@@ -1,0 +1,49 @@
+name: Parity with gw2pc.com
+
+on:
+  schedule:
+    - cron: "30 6 * * 1"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  issues: write
+
+jobs:
+  parity:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: pnpm/action-setup@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: pnpm
+      - run: pnpm install --frozen-lockfile
+      - name: Compare with gw2pc.com
+        id: check
+        run: pnpm parity 2>&1 | tee parity.log
+        continue-on-error: true
+      - name: Open or update an issue when values differ
+        if: steps.check.outcome == 'failure'
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          {
+            echo "Our OTC prices differ from gw2pc.com by more than 1%."
+            echo
+            echo "A \`formula …\` line that passes while the live line fails means gw2pc.com read different order-book data; the formula itself still matches."
+            echo
+            echo '```'
+            grep -E "^(FAIL|[0-9]+/[0-9]+)" parity.log
+            echo '```'
+            echo
+            echo "Run: $GITHUB_SERVER_URL/$GITHUB_REPOSITORY/actions/runs/$GITHUB_RUN_ID"
+          } > body.md
+          existing=$(gh issue list --label parity --state open --json number --jq '.[0].number // empty')
+          if [ -n "$existing" ]; then
+            gh issue comment "$existing" --body-file body.md
+          else
+            gh label create parity --color FBCA04 --description "Mismatch with gw2pc.com" 2>/dev/null || true
+            gh issue create --title "OTC prices differ from gw2pc.com" --label parity --body-file body.md
+          fi

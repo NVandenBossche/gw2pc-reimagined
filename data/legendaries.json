@@ -1,0 +1,242 @@
+[
+ {
+  "id": 105497,
+  "name": "Aetheric Anchor",
+  "gen": "other",
+  "kind": "Default"
+ },
+ {
+  "id": 95808,
+  "name": "Aurene's Argument",
+  "gen": 3,
+  "kind": "Pistol"
+ },
+ {
+  "id": 96356,
+  "name": "Aurene's Bite",
+  "gen": 3,
+  "kind": "Greatsword"
+ },
+ {
+  "id": 97099,
+  "name": "Aurene's Breath",
+  "gen": 3,
+  "kind": "Torch"
+ },
+ {
+  "id": 96203,
+  "name": "Aurene's Claw",
+  "gen": 3,
+  "kind": "Dagger"
+ },
+ {
+  "id": 95675,
+  "name": "Aurene's Fang",
+  "gen": 3,
+  "kind": "Sword"
+ },
+ {
+  "id": 97590,
+  "name": "Aurene's Flight",
+  "gen": 3,
+  "kind": "LongBow"
+ },
+ {
+  "id": 97165,
+  "name": "Aurene's Gaze",
+  "gen": 3,
+  "kind": "Focus"
+ },
+ {
+  "id": 96652,
+  "name": "Aurene's Insight",
+  "gen": 3,
+  "kind": "Staff"
+ },
+ {
+  "id": 97377,
+  "name": "Aurene's Persuasion",
+  "gen": 3,
+  "kind": "Rifle"
+ },
+ {
+  "id": 96937,
+  "name": "Aurene's Rending",
+  "gen": 3,
+  "kind": "Axe"
+ },
+ {
+  "id": 96028,
+  "name": "Aurene's Scale",
+  "gen": 3,
+  "kind": "Shield"
+ },
+ {
+  "id": 95612,
+  "name": "Aurene's Tail",
+  "gen": 3,
+  "kind": "Mace"
+ },
+ {
+  "id": 97783,
+  "name": "Aurene's Voice",
+  "gen": 3,
+  "kind": "Warhorn"
+ },
+ {
+  "id": 95684,
+  "name": "Aurene's Weight",
+  "gen": 3,
+  "kind": "Hammer"
+ },
+ {
+  "id": 97077,
+  "name": "Aurene's Wing",
+  "gen": 3,
+  "kind": "ShortBow"
+ },
+ {
+  "id": 96221,
+  "name": "Aurene's Wisdom",
+  "gen": 3,
+  "kind": "Scepter"
+ },
+ {
+  "id": 30699,
+  "name": "Bolt",
+  "gen": 1,
+  "kind": "Sword"
+ },
+ {
+  "id": 30689,
+  "name": "Eternity",
+  "gen": 1,
+  "kind": "Greatsword"
+ },
+ {
+  "id": 30697,
+  "name": "Frenzy",
+  "gen": 1,
+  "kind": "Speargun"
+ },
+ {
+  "id": 30684,
+  "name": "Frostfang",
+  "gen": 1,
+  "kind": "Axe"
+ },
+ {
+  "id": 30702,
+  "name": "Howler",
+  "gen": 1,
+  "kind": "Warhorn"
+ },
+ {
+  "id": 30687,
+  "name": "Incinerator",
+  "gen": 1,
+  "kind": "Dagger"
+ },
+ {
+  "id": 30691,
+  "name": "Kamohoali'i Kotaki",
+  "gen": 1,
+  "kind": "Harpoon"
+ },
+ {
+  "id": 103815,
+  "name": "Klobjarne Geirr",
+  "gen": "other",
+  "kind": "Harpoon"
+ },
+ {
+  "id": 30701,
+  "name": "Kraitkin",
+  "gen": 1,
+  "kind": "Trident"
+ },
+ {
+  "id": 30685,
+  "name": "Kudzu",
+  "gen": 1,
+  "kind": "LongBow"
+ },
+ {
+  "id": 30695,
+  "name": "Meteorlogicus",
+  "gen": 1,
+  "kind": "Scepter"
+ },
+ {
+  "id": 30693,
+  "name": "Quip",
+  "gen": 1,
+  "kind": "Pistol"
+ },
+ {
+  "id": 30700,
+  "name": "Rodgort",
+  "gen": 1,
+  "kind": "Torch"
+ },
+ {
+  "id": 30703,
+  "name": "Sunrise",
+  "gen": 1,
+  "kind": "Greatsword"
+ },
+ {
+  "id": 30698,
+  "name": "The Bifrost",
+  "gen": 1,
+  "kind": "Staff"
+ },
+ {
+  "id": 30686,
+  "name": "The Dreamer",
+  "gen": 1,
+  "kind": "ShortBow"
+ },
+ {
+  "id": 30696,
+  "name": "The Flameseeker Prophecies",
+  "gen": 1,
+  "kind": "Shield"
+ },
+ {
+  "id": 30690,
+  "name": "The Juggernaut",
+  "gen": 1,
+  "kind": "Hammer"
+ },
+ {
+  "id": 30688,
+  "name": "The Minstrel",
+  "gen": 1,
+  "kind": "Focus"
+ },
+ {
+  "id": 30692,
+  "name": "The Moot",
+  "gen": 1,
+  "kind": "Mace"
+ },
+ {
+  "id": 30694,
+  "name": "The Predator",
+  "gen": 1,
+  "kind": "Rifle"
+ },
+ {
+  "id": 30704,
+  "name": "Twilight",
+  "gen": 1,
+  "kind": "Greatsword"
+ },
+ {
+  "id": 110020,
+  "name": "Wages of Stars",
+  "gen": "other",
+  "kind": "Sword"
+ }
+]
