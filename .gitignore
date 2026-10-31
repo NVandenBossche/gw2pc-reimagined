@@ -1,0 +1,6 @@
+node_modules
+dist
+.DS_Store
+*.tsbuildinfo
+# local agent tooling (Impeccable skill, engine binary, hooks)
+.claude/
