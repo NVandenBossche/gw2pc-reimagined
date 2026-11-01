@@ -9,7 +9,7 @@ import { Trend, withLive } from "../components/Trend";
 import { DATA_BASE, bltc } from "../config";
 import { useHistory } from "../history";
 import { useNow, usePrices } from "../prices";
-import { payLink } from "../router";
+import { payHref } from "../router";
 
 type Sort = "name" | "price" | "roi";
 const GROUPS: { gen: LegendaryEntry["gen"]; title: string }[] = [
@@ -120,10 +120,10 @@ export function Legendaries() {
                           <Money c={buy} gs />
                         </td>
                         <td className="otc">
-                          {otc === null ? (
+                          {payHref(otc) === null ? (
                             <Money c={otc} gs />
                           ) : (
-                            <a href={payLink(otc)} title="Open in Pay">
+                            <a href={payHref(otc)!} title="Open in Pay">
                               <Money c={otc} gs />
                             </a>
                           )}

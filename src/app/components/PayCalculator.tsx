@@ -42,7 +42,7 @@ export function PayCalculator({ amount: linkAmount }: { amount?: string }) {
 
   const [dir, setDir] = useState<Direction>("pay");
   const [kind, setKind] = useState<PayKind>("ecto");
-  const [amountText, setAmountText] = useState(linkAmount ?? "");
+  const [amountText, setAmountText] = useState("");
   const [filler, setFiller] = useState<FillerKind>("gold");
   const [t6, setT6] = useState("");
   const [stacks, setStacks] = useState("");
@@ -52,11 +52,11 @@ export function PayCalculator({ amount: linkAmount }: { amount?: string }) {
   const [rMc, setRMc] = useState("");
   const [rGold, setRGold] = useState("");
 
-  // The Pay page stays mounted when the hash changes, so follow a new link amount.
+  // Follow the link: its amount, or empty without one. The Pay page stays mounted
+  // when the hash changes, and this only runs when the link amount changes.
   useEffect(() => {
-    if (linkAmount === undefined) return;
-    setAmountText(linkAmount);
-    setDir("pay");
+    setAmountText(linkAmount ?? "");
+    if (linkAmount !== undefined) setDir("pay");
   }, [linkAmount]);
 
   const amount = parseGold(amountText);
