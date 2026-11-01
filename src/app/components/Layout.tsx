@@ -8,12 +8,12 @@ const SHORT: Record<string, string> = { mc: "MC", ecto: "Ecto", t6: "T6", t5: "T
 
 const NAV: { label: string; href: string; active: (r: Route) => boolean }[] = [
   { label: "Home", href: "#/", active: (r) => r.name === "home" },
+  { label: "Legendaries", href: "#/leg", active: (r) => r.name === "leg" },
   { label: "Pay", href: "#/pay", active: (r) => r.name === "pay" },
   ...["mc", "ecto"].map((slug) => ({ label: SHORT[slug]!, href: `#/item/${slug}`, active: (r: Route) => r.name === "item" && r.slug === slug })),
   { label: "T6", href: "#/set/t6", active: (r) => r.name === "set" && r.slug === "t6" },
   { label: "T5", href: "#/set/t5", active: (r) => r.name === "set" && r.slug === "t5" },
   ...ITEMS.filter((i) => i.slug !== "mc" && i.slug !== "ecto").map((i) => ({ label: SHORT[i.slug] ?? i.name, href: `#/item/${i.slug}`, active: (r: Route) => r.name === "item" && r.slug === i.slug })),
-  { label: "Legendaries", href: "#/leg", active: (r) => r.name === "leg" },
 ];
 void SETS;
 
