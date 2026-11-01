@@ -1,18 +1,23 @@
 import { useEffect, useState } from "react";
+import { parseGold } from "../core/money";
 
 export type Route =
   | { name: "home" }
-  | { name: "pay" }
+  | { name: "pay"; amount?: string }
   | { name: "leg" }
   | { name: "item"; slug: string }
   | { name: "set"; slug: string }
   | { name: "notfound" };
 
 export function parseHash(hash: string): Route {
-  const path = hash.replace(/^#\/?/, "").replace(/\/+$/, "");
+  const [rawPath = "", query = ""] = hash.replace(/^#\/?/, "").split("?", 2);
+  const path = rawPath.replace(/\/+$/, "");
   const [a, b] = path.split("/");
   if (!a) return { name: "home" };
-  if (a === "pay") return { name: "pay" };
+  if (a === "pay") {
+    const amount = new URLSearchParams(query).get("amount");
+    return amount !== null && parseGold(amount) !== null ? { name: "pay", amount } : { name: "pay" };
+  }
   if (a === "leg") return { name: "leg" };
   if (a === "item" && b) return { name: "item", slug: b };
   if (a === "set" && b) return { name: "set", slug: b };
