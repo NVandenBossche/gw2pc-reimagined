@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { parseGold } from "../core/money";
+import { formatGoldSilver, parseGold } from "../core/money";
 
 export type Route =
   | { name: "home" }
@@ -22,6 +22,11 @@ export function parseHash(hash: string): Route {
   if (a === "item" && b) return { name: "item", slug: b };
   if (a === "set" && b) return { name: "set", slug: b };
   return { name: "notfound" };
+}
+
+/** Pay link carrying an amount (copper) as displayed on a gold/silver price cell. */
+export function payLink(copper: number): string {
+  return `#/pay?amount=${encodeURIComponent(formatGoldSilver(copper))}`;
 }
 
 export function useRoute(): Route {

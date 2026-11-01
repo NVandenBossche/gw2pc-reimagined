@@ -1,5 +1,18 @@
 import { describe, expect, it } from "vitest";
-import { parseHash } from "./router";
+import { parseGold } from "../core/money";
+import { parseHash, payLink } from "./router";
+
+describe("payLink", () => {
+  it.each([123_456_789, 1_234_550, 4_950, 10_000, 149])("round-trips %i copper rounded to the silver", (c) => {
+    const route = parseHash(payLink(c));
+    expect(route.name).toBe("pay");
+    const amount = route.name === "pay" ? route.amount : undefined;
+    expect(parseGold(amount ?? "")).toBe(Math.round(c / 100) * 100);
+  });
+  it("carries the displayed OTC price text, URL-encoded", () => {
+    expect(payLink(1_234_550)).toBe("#/pay?amount=123g%2046s");
+  });
+});
 
 describe("parseHash pay link", () => {
   it("keeps a readable Payment amount from the link", () => {
