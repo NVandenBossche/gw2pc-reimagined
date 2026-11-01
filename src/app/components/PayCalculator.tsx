@@ -1,4 +1,4 @@
-import { useMemo, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import { ECTO_STACK, payAll, payMix, receive, type FillerKind, type PayPrices } from "../../core/payment";
 import { formatGold, parseGold } from "../../core/money";
 import { usePrices } from "../prices";
@@ -35,7 +35,7 @@ function Field({ id, label, hint, children }: { id: string; label: string; hint?
   );
 }
 
-export function PayCalculator() {
+export function PayCalculator({ amount: linkAmount }: { amount?: string }) {
   const { tracked } = usePrices();
   const prices: PayPrices | null =
     tracked.ecto && tracked.mc && tracked.t6 ? { ecto: tracked.ecto, mc: tracked.mc, t6set: tracked.t6 } : null;
@@ -51,6 +51,13 @@ export function PayCalculator() {
   const [rEcto, setREcto] = useState("");
   const [rMc, setRMc] = useState("");
   const [rGold, setRGold] = useState("");
+
+  // Follow the link: its amount, or empty without one. The Pay page stays mounted
+  // when the hash changes, and this only runs when the link amount changes.
+  useEffect(() => {
+    setAmountText(linkAmount ?? "");
+    if (linkAmount !== undefined) setDir("pay");
+  }, [linkAmount]);
 
   const amount = parseGold(amountText);
   const amountBad = amountText.trim() !== "" && amount === null;

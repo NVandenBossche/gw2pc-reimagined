@@ -17,7 +17,7 @@ export function App() {
       <Layout route={route}>
         <div className="page" key={route.name === "item" || route.name === "set" ? `${route.name}/${route.slug}` : route.name}>
           {route.name === "home" && <Home />}
-          {route.name === "pay" && <Pay />}
+          {route.name === "pay" && <Pay amount={route.amount} />}
           {route.name === "leg" && <Legendaries />}
           {route.name === "item" && <ItemPage slug={route.slug} />}
           {route.name === "set" && <SetPage slug={route.slug} />}
