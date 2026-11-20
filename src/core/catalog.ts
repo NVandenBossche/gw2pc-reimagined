@@ -58,6 +58,33 @@ export const LEGENDARY_INCLUDE: readonly number[] = [105497]; // Aetheric Anchor
 export const LEGENDARY_GEN3_PREFIX = "Aurene's ";
 export const LEGENDARY_OTHER_NAMES: readonly string[] = ["Klobjarne Geirr", "Wages of Stars", "Aetheric Anchor"];
 
+/**
+ * Gen 1 legendary → Starter kit release set (the first set it newly joins). Kept here, not in
+ * data/legendaries.json, because the discovery script regenerates that file. Eternity has none.
+ */
+export const LEGENDARY_RELEASE_SET: Readonly<Record<string, number>> = {
+  Meteorlogicus: 1,
+  "The Bifrost": 1,
+  Bolt: 1,
+  Quip: 1,
+  "The Moot": 2,
+  "The Predator": 2,
+  "The Dreamer": 3,
+  Frostfang: 3,
+  "The Juggernaut": 4,
+  Incinerator: 4,
+  "Kamohoali'i Kotaki": 5,
+  Twilight: 5,
+  Howler: 6,
+  Kudzu: 6,
+  Frenzy: 7,
+  "The Minstrel": 7,
+  Rodgort: 8,
+  Sunrise: 8,
+  Kraitkin: 9,
+  "The Flameseeker Prophecies": 9,
+};
+
 export type LegendaryEntry = { id: number; name: string; gen: 1 | 3 | "other"; kind: string };
 
 export const REFRESH_MS = 5 * 60 * 1000;

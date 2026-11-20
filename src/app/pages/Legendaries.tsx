@@ -1,7 +1,8 @@
 import { Fragment, useEffect, useMemo, useState } from "react";
 import { fetchBooks } from "../../core/api";
-import type { LegendaryEntry } from "../../core/catalog";
+import { LEGENDARY_RELEASE_SET, type LegendaryEntry } from "../../core/catalog";
 import type { Books } from "../../core/compute";
+import { inKitWindow } from "../../core/kit";
 import { LEG_DEPTHS, legendaryRow } from "../../core/legendary";
 import { roiLevel } from "../../core/otc";
 import { Delta, Money } from "../components/Money";
@@ -52,9 +53,10 @@ export function Legendaries() {
       const buy = r?.buy[d] ?? null;
       const otc = r?.otc ?? null;
       const roi = buy && otc && buy < otc ? (otc - buy) / buy : null;
-      return { l, r, d, buy, otc, raw: r?.rawSell[d] ?? null, roi };
+      const set = l.gen === 1 ? LEGENDARY_RELEASE_SET[l.name] : undefined;
+      return { l, r, d, buy, otc, raw: r?.rawSell[d] ?? null, roi, set, kit: inKitWindow(set, new Date(now)) };
     });
-  }, [list, books]);
+  }, [list, books, now]);
 
   const sorted = (gen: LegendaryEntry["gen"]) => {
     const g = rows.filter((x) => x.l.gen === gen);
@@ -71,6 +73,9 @@ export function Legendaries() {
       <h1>Legendaries</h1>
       <p className="hint">
         OTC price is 85% Sell at the item's standard depth: depth 1, moving to 2 and then 3 only while each step adds more than 45g. Rounded to the silver.
+      </p>
+      <p className="hint">
+        <span className="kit-dot" aria-hidden="true">●</span> Kit window: the weapon's Starter kit set goes live within 30 days, when its price tends to fall.
       </p>
       <div className="seg" role="group" aria-label="Sort by">
         {(["name", "price", "roi"] as Sort[]).map((s) => (
@@ -107,13 +112,24 @@ export function Legendaries() {
                   </tr>
                 </thead>
                 <tbody>
-                  {group.map(({ l, r, d, buy, otc, raw, roi }) => (
+                  {group.map(({ l, r, d, buy, otc, raw, roi, set, kit }) => (
                     <Fragment key={l.id}>
                       <tr>
                         <th scope="row" className="l">
                           <button type="button" className="row-toggle" aria-expanded={open === l.id} onClick={() => setOpen(open === l.id ? null : l.id)}>
                             {l.name}
                           </button>
+                          {set !== undefined && (
+                            <span className="kit-set muted">
+                              Set {set}
+                              {kit && (
+                                <span className="kit-dot" role="img" aria-label="Kit window" title="Kit window: set goes live within 30 days">
+                                  {" "}
+                                  ●
+                                </span>
+                              )}
+                            </span>
+                          )}
                         </th>
                         <td className="num muted hide-s">@{d}</td>
                         <td>

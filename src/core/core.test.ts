@@ -4,6 +4,7 @@ import { formatGold, formatGoldSilver, parseGold, roundHalfEven } from "./money"
 import { buildTable, otcPrice, roiLevel, singleItemValue } from "./otc";
 import { setValue } from "./sets";
 import { legendaryRow } from "./legendary";
+import { inKitWindow } from "./kit";
 import { payAll, payMix, receive } from "./payment";
 import { average, change, daysOfHistory, economyIndex } from "./trends";
 import { gemPrice } from "./gems";
@@ -239,5 +240,40 @@ describe("computeTracked", () => {
     expect(r.ecto).toBeUndefined();
     expect(r.t6).toBeUndefined();
     expect(r.gem).toBe(1_592_800);
+  });
+});
+
+describe("Starter kit window", () => {
+  const d = (s: string) => new Date(s);
+  it("opens exactly 30 days before the switch and closes when the set goes live", () => {
+    expect(inKitWindow(3, d("2026-11-14T23:59:59Z"))).toBe(false);
+    expect(inKitWindow(3, d("2026-11-15T00:00:00Z"))).toBe(true);
+    expect(inKitWindow(3, d("2026-12-14T23:59:59Z"))).toBe(true);
+    expect(inKitWindow(3, d("2026-12-15T00:00:00Z"))).toBe(false);
+  });
+  it("shows the dot today for Set 3 weapons only", () => {
+    const today = d("2026-11-20T12:00:00Z");
+    expect(inKitWindow(3, today)).toBe(true);
+    for (const s of [1, 2, 4, 5, 6, 7, 8, 9, 10]) expect(inKitWindow(s, today)).toBe(false);
+  });
+  it("is not in the window once its set is live", () => {
+    expect(inKitWindow(2, d("2026-09-15T00:00:00Z"))).toBe(false);
+    expect(inKitWindow(2, d("2026-12-01T00:00:00Z"))).toBe(false);
+  });
+  it("resolves the anchor week to Set 2 (window for Set 2 closes on the anchor)", () => {
+    expect(inKitWindow(2, d("2026-09-14T00:00:00Z"))).toBe(true);
+    expect(inKitWindow(2, d("2026-09-15T00:00:00Z"))).toBe(false);
+    expect(inKitWindow(1, d("2026-09-14T00:00:00Z"))).toBe(false);
+  });
+  it("wraps from Set 10 back to Set 1 across 2028", () => {
+    // Set 10 live 15 Sep 2028 + ... : step 8 from anchor = 15 Sep 2028 is Set 10; Set 1 returns 15 Dec 2028.
+    expect(inKitWindow(1, d("2028-11-14T23:59:59Z"))).toBe(false);
+    expect(inKitWindow(1, d("2028-11-15T00:00:00Z"))).toBe(true);
+    expect(inKitWindow(1, d("2028-12-15T00:00:00Z"))).toBe(false);
+    expect(inKitWindow(10, d("2028-08-16T00:00:00Z"))).toBe(true);
+    expect(inKitWindow(10, d("2028-09-15T00:00:00Z"))).toBe(false);
+  });
+  it("is never in the window without a release set", () => {
+    expect(inKitWindow(undefined, d("2026-11-20T00:00:00Z"))).toBe(false);
   });
 });

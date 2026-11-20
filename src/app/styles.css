@@ -621,3 +621,12 @@ input[aria-invalid="true"] {
     animation: none;
   }
 }
+
+.kit-set {
+  margin-left: 0.5em;
+  font-size: 0.85em;
+  white-space: nowrap;
+}
+.kit-dot {
+  color: var(--neg);
+}
