@@ -58,6 +58,18 @@ One of the original core-game legendary weapons, such as Eternity, Bolt or The B
 One of the Aurene's legendary weapons from End of Dragons, such as Aurene's Fang.
 _Avoid_: Gen 2.5
 
+**Starter kit**:
+The Legendary Weapon Starter Kit sold in the Wizard's Vault, containing the materials for four **Gen 1 legendaries**. Exactly one **Kit set** is on offer at a time, and the offer changes to the next set every three months.
+_Avoid_: Starter key
+
+**Kit set**:
+One of the ten numbered offers of the **Starter kit**, cycling from 1 to 10 and back to 1. Every **Gen 1 legendary** except Eternity is in two consecutive sets. Its **release set** is the first of them, the set where it newly joins the kit.
+_Avoid_: Kit rotation, kit number
+
+**Kit window**:
+The 30 days before a **Gen 1 legendary**'s **release set** goes live, when its price tends to fall in anticipation.
+_Avoid_: Drop period, pre-release
+
 **Flippable**:
 True when the 100% Buy **Depth price** is below the 85% Sell **Depth price** at the same **Depth**. Buying through a buy order and reselling through a sell listing then makes a profit after Trading Post fees.
 _Avoid_: Profitable, arbitrage
